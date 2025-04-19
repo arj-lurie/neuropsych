@@ -14,15 +14,15 @@ from report_renderer import render_summary_html
 import pdb
 
 # Read the source PDF file
-fpath = '../../data/np_hx/Sample NP Hx Form - Reno.pdf'
+fpath = '../../data/np_hx/patients/P1/Sample NP Hx Form - Reno.pdf'
 filled_values = extract_pdf_form_data(fpath)
 
 # print(filled_values)
 field_section_map = load_field_to_section_map()
 
-target_sections = ['Background Information', 'Birth and Developmental History']
+target_sections = ['Background Info Header', 'Concerns Prompting This evaluation']
 extracted_data = extract_sections(filled_values, target_sections, field_section_map)
-
+pdb.set_trace()
 section_data = {}
 for section in extracted_data:
     # result = get_local_response(get_ai_instruction(extracted_data[section]))
