@@ -33,7 +33,9 @@ field_section_map = load_field_to_section_map()
 target_sections = ['Background Info Header', 
                    'Concerns Prompting This Evaluation', 
                    'Medical History', 
-                   'Birth & Development History']
+                   'Birth & Development History',
+                   'School History',
+                   'Family History']
 
 extracted_data = extract_sections(filled_values, target_sections, field_section_map)
 

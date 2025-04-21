@@ -6,13 +6,20 @@ from ai_configuration_local import get_local_response
 from ai_configuration_remote import get_remote_response
 from ai_instructions import get_ai_instruction
 from report_renderer import render_summary_html
+from patient_details import get_patient_info
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
 import os
 import time
 
 # Root folder to search for PDFs
 ROOT_DIR = Path('../../data/np_hx/patients')
-TARGET_SECTIONS = ['Background Information', 'Birth and Developmental History']
+TARGET_SECTIONS = ['Background Info Header', 
+                   'Concerns Prompting This Evaluation', 
+                   'Medical History', 
+                   'Birth & Development History',
+                   'School History',
+                   'Family History']
 
 # -----------------------------------------------------------------------
 # Parallelize each section of the report. Since this function involves making a remote API call, which is likely I/O-bound 
@@ -27,24 +34,31 @@ def process_pdf(fpath):
 
         section_data = {}
 
-        # Create a ThreadPoolExecutor for concurrent calls to get_remote_response
+        # ThreadPoolExecutor handles remote API calls concurrently
         with ThreadPoolExecutor(max_workers=5) as executor:
+            # Submit tasks and map futures to sections
             future_to_section = {
-                executor.submit(get_remote_response, get_ai_instruction(data)): section
+                executor.submit(get_remote_response, get_ai_instruction(data, section)): section
                 for section, data in extracted_data.items()
             }
 
-            # Process the results in the order of the original sections
-            for section in extracted_data:
-                future = future_to_section.popitem()[0]  # Pop the future for each section in order
+            # Store completed results temporarily
+            temp_results = {}
+
+            # Collect results as they complete
+            for future in as_completed(future_to_section):
+                section = future_to_section[future]
                 try:
-                    result = future.result()
-                    section_data[section] = result
+                    temp_results[section] = future.result()
                 except Exception as e:
-                    section_data[section] = f"Error: {e}"
+                    temp_results[section] = f"Error: {e}"
+
+        # Reconstruct ordered section_data based on original extracted_data keys
+        section_data = {section: temp_results.get(section, "Missing") for section in extracted_data}
 
         # Render the summary after processing all sections
-        render_summary_html(section_data, fpath)
+        patient_info = get_patient_info(filled_values)
+        render_summary_html(section_data, fpath, patient_info)
         elapsed = time.time() - start_time
         print(f"✅ Processed: {fpath} in {elapsed:.2f} seconds")
     except Exception as e:

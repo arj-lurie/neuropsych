@@ -21,10 +21,10 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, outp
             <pre>{result}</pre>
         </section>
         """
-    # Patient Info Table (Jinja2-style placeholders)
+    # Patient Info Table
     patient_info_html = """
     <div class="patient-info">
-        <table>
+        <table style="width: 50%; border-collapse: collapse; margin-bottom: 20px;">
             <tr><td>PATIENT NAME:</td><td>{{ patient_info['name'] }}</td></tr>
             <tr><td>MEDICAL RECORD NO:</td><td>{{ patient_info['medical_record_no'] }}</td></tr>
             <tr><td>DATE OF BIRTH:</td><td>{{ patient_info['date_of_birth'] }}</td></tr>
@@ -58,7 +58,7 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, outp
             }}
             .nav-pane {{
                 width: 240px;
-                background: rgba(255, 255, 255, 0.9);  /* Translucent white */
+                background: rgba(108, 136, 177, 0.6);
                 color: #333;
                 padding: 10px;
                 position: fixed;
@@ -71,9 +71,9 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, outp
                 transition: width 0.3s;
             }}
             .nav-pane a {{
-                color: #444;
+                color: #f9f9f9;
                 text-decoration: none;
-                font-size: 1.1em;
+                font-size: 1em;
                 margin: 8px 0;
                 display: block;
                 padding: 6px 10px;
@@ -82,15 +82,18 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, outp
             }}
             .nav-pane a:hover {{
                 background-color: rgba(0, 122, 255, 0.1);
-            }}
+            }}            
             .content {{
                 margin-left: 260px;
                 padding: 15px 25px;
                 flex: 1;
             }}
+            ul li::marker {{
+              color: #f9f9f9;
+            }}
             h1 {{
                 text-align: center;
-                color: #2c3e50;
+                color: #236eb9;
                 margin-bottom: 30px;
                 font-size: 2em;
             }}
@@ -103,7 +106,7 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, outp
                 transition: max-height 0.3s ease-out;
             }}
             h2 {{
-                color: #007aff;  /* Soft Apple-like blue */
+                color: #3e6897;
                 font-size: 1.6em;
                 margin-bottom: 10px;
                 cursor: pointer;

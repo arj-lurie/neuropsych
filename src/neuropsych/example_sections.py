@@ -7,8 +7,7 @@ for therapeutic intervention and educational planning, particularly in advance o
 """,
 
     "Background Info Header": """
-Background information was obtained through a telemedicine interview with Lucy and her mother, Ann Brown, 
-as well as a review of available medical and school records.
+Background information was obtained through a telemedicine interview with Lucy and her mother, Ann Brown, as well as a review of available medical and school records.
 """,
 
     "Concerns Prompting This Evaluation": """
