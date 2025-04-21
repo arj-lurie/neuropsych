@@ -1,3 +1,6 @@
+# ------------------------------------------
+# This is a support / utility function file
+# ------------------------------------------
 import json
 
 # Function to read the master template from a JSON file

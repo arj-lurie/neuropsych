@@ -1,3 +1,7 @@
+# ------------------------------------------
+# This is a support / utility function file.
+# Ideally we'd structure this to be a larger module for use across multiple projects
+# ------------------------------------------
 from pdfrw import PdfReader
 import pdb
 
