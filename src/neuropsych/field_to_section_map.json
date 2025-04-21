@@ -53,6 +53,7 @@
     "Pt Foster Care Yes Current"
   ],
   "Background Info Header": [
+    "Pt Name",
     "LG Name",
     "LG Relationship to Pt",
     "LG Preferred Language",
@@ -83,12 +84,14 @@
     "Legal Guardian Research No"
   ],
   "Concerns Prompting This Evaluation": [
+    "Pt Name",
     "Reason for Referral",
     "LG Additional Concerns or Questions",
     "Pt Previous Diagnoses",
     "Caregiver Knowledge of Pt Prob"
   ],
   "Family History": [
+    "Pt Name",
     "Pt Adopted Yes",
     "Pt Adopted No",
     "Pt Aware Adopted Yes",
@@ -323,6 +326,7 @@
     "Conception Aid None"
   ],
   "Birth & Development History": [
+    "Pt Name",
     "Pregnancy Concerns No",
     "Pregnancy Concerns Yes",
     "Pregnancy Concerns Maternal Stress",
@@ -493,6 +497,7 @@
     "Dev Services Other Outpatient Ages"
   ],
   "Medical History": [
+    "Pt Name",
     "Med Hx None Listed",
     "Med Hx Alcohol or Substance Abuse",
     "Med Hx Alcohol or Substance Abuse Age Dxed",
@@ -772,6 +777,7 @@
     "Beh Health Dx Not Listed Current"
   ],
   "School History": [
+    "Pt Name",
     "Current School",
     "Current Grade",
     "School Type Public",

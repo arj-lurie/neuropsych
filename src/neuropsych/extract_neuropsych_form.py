@@ -1,4 +1,5 @@
 from pdfrw import PdfReader
+import pdb
 
 def extract_pdf_form_data(pdf_path):
     # Read the PDF file
@@ -35,7 +36,7 @@ def invert_mapping(section_map):
     }
 
 # Extract a specific section from filled_values
-def extract_specific_section(filled_values, target_section, section_map):
+def extract_specific_section(filled_values, target_section, section_map):    
     return {
         key: filled_values[key]
         for key in section_map.get(target_section, [])
