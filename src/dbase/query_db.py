@@ -49,7 +49,7 @@ if __name__ == '__main__':
     # ------------------------------------------------------------
     # Use this to extract data for research purposes
     # ------------------------------------------------------------
-    target_fields = ["Pt Name", "Ext Fam Cancer Relation", "Birthweight Lbs", "Birthweight Ozs", "Delivery Vaginal", "Dev Services PT at School Ages"]
+    target_fields = ["Newborn Difficulties Hydrocephalus"]
     providers = list_referring_providers_from_template(patients_data, template_structure, target_fields)
 
     print("Requested Data:")
