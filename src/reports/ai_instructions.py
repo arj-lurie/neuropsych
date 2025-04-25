@@ -10,7 +10,7 @@ def get_ai_instruction(filled_values, section):
 
     Returns:
         str: The AI instruction message.
-    """
+    """    
     section_example = example_sections.get(section, "No example available for this section.")
     
     if section_example == "No example available for this section.":
@@ -18,7 +18,7 @@ def get_ai_instruction(filled_values, section):
         pdb.set_trace()
 
     # Define the AI instruction message
-    ai_message = f"Here are the various fields I extracted from a .pdf: {filled_values}." + """
+    ai_message = f"Here are the various fields/lines I extracted from a .pdf: {filled_values}." + """
     Please provide a comprehensive summary based on all the the information in the fields. 
     The very presence of a field indicates that it occurred. For e.g.
 

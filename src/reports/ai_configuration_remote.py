@@ -13,8 +13,7 @@ remote_summarization_model = "llama-3.3-70b-versatile"
 # ----------------------------
 # Remote LLM Response
 # ----------------------------
-def get_remote_response(content):
-    
+def get_remote_response(content):    
     chat_completion = client.chat.completions.create(
         messages=[
             {

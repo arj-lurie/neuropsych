@@ -1,6 +1,18 @@
 from datetime import datetime
 
+def flatten_section_data(section_data_raw):
+    # If already flat (no values are dicts), skip flattening
+    if not any(isinstance(v, dict) for v in section_data_raw.values()):
+        return section_data_raw
+    
+    flat = {}
+    for section_dict in section_data_raw.values():
+        if isinstance(section_dict, dict):
+            flat.update(section_dict)
+    return flat
+
 def get_patient_info(filled_values):
+    filled_values = flatten_section_data(filled_values)
     # Parse dates
     dob_str = filled_values.get("Pt DOB")
     eval_date_str = filled_values.get("Form Date")

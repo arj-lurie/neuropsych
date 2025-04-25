@@ -3,16 +3,24 @@ from jinja2 import Template
 import os
 import webbrowser
 
-def render_summary_html(section_data: dict, fpath: str, patient_info: dict, output_filename="ai_generated_report.html"):
+def render_summary_html(section_data: dict, fpath: str, patient_info: dict, _target_sections: list, output_filename="ai_generated_report.html"):
     # Get the directory from the input file path
-    output_dir = os.path.dirname(fpath)
+    output_dir = fpath
     # Combine directory and output filename
     output_file = os.path.join(output_dir, output_filename)
 
     # Generate navigation links
     nav_links = ""
     html_sections = ""
-    for idx, (section, result) in enumerate(section_data.items()):
+
+    # Define the order explicitly: Reason first, then your target sections
+    ordered_sections = ["Reason for Referral"] + _target_sections
+
+    # Generate HTML in that specific order
+    for idx, section in enumerate(ordered_sections):
+        result = section_data.get(section)
+        if not result:
+            continue  # Skip if that section wasn't included
         section_id = f"section-{idx}"
         nav_links += f'<li><a href="#{section_id}" class="nav-link">{section}</a></li>'
         html_sections += f"""
@@ -21,6 +29,16 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, outp
             <pre>{result}</pre>
         </section>
         """
+
+    # for idx, (section, result) in enumerate(section_data.items()):
+    #     section_id = f"section-{idx}"
+    #     nav_links += f'<li><a href="#{section_id}" class="nav-link">{section}</a></li>'
+    #     html_sections += f"""
+    #     <section class="content-section" id="{section_id}">
+    #         <h2>{section}</h2>
+    #         <pre>{result}</pre>
+    #     </section>
+    #     """
     # Patient Info Table
     patient_info_html = """
     <div class="patient-info">
