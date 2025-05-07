@@ -3,3 +3,6 @@ data/
 docs/
 __pycache__/
 libraries/
+*.json
+*.txt
+*.html
