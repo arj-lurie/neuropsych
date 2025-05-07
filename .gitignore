@@ -6,3 +6,4 @@ libraries/
 *.json
 *.txt
 *.html
+.env
