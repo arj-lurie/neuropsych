@@ -2,9 +2,13 @@ import os
 import pdb
 from groq import Groq
 import re
+from dotenv import load_dotenv
+
+load_dotenv()
+my_api_key = os.getenv("GROQ_API_KEY")
 
 client = Groq(
-    api_key="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",
+    api_key=my_api_key,
 )
 
 # Setup local coding models to use

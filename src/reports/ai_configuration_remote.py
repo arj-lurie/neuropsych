@@ -3,10 +3,14 @@ import pdb
 from groq import Groq
 import re
 
-client = Groq(
-    api_key="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",
-)
+from dotenv import load_dotenv
 
+load_dotenv()
+my_api_key = os.getenv("GROQ_API_KEY")
+
+client = Groq(
+    api_key=my_api_key,
+)
 # Setup local coding models to use
 remote_summarization_model = "llama-3.3-70b-versatile"
 
