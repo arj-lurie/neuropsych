@@ -4,7 +4,8 @@ import json
 # Setup local coding models to use
 # local_coding_model = "codegemma"
 # local_summary_model = "gemma:2b"
-local_summary_model = "llama3.2"
+# local_summary_model = "llama3.2"
+local_summary_model = "gpt-oss:20b"
 # local_coding_model = "qwen2.5-coder:32b"
 
 # ----------------------------

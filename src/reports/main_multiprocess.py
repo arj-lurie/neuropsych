@@ -13,7 +13,7 @@ import os
 import time
 
 # Root folder to search for PDFs
-ROOT_DIR = Path('../../data/np_hx/patients')
+ROOT_DIR = Path('../../data/np_hx/patients-np-hx-only')
 TARGET_SECTIONS = ['Background Info Header', 
                    'Concerns Prompting This Evaluation', 
                    'Medical History', 
@@ -36,9 +36,17 @@ def process_pdf(fpath):
 
         # ThreadPoolExecutor handles remote API calls concurrently
         with ThreadPoolExecutor(max_workers=5) as executor:
+            # ## REMOTE MODEL
+            # # Submit tasks and map futures to sections
+            # future_to_section = {
+            #     executor.submit(get_remote_response, get_ai_instruction(data, section)): section
+            #     for section, data in extracted_data.items()
+            # }
+
+            ## LOCAL MODEL
             # Submit tasks and map futures to sections
             future_to_section = {
-                executor.submit(get_remote_response, get_ai_instruction(data, section)): section
+                executor.submit(get_local_response, get_ai_instruction(data, section)): section
                 for section, data in extracted_data.items()
             }
 
@@ -58,7 +66,7 @@ def process_pdf(fpath):
 
         # Render the summary after processing all sections
         patient_info = get_patient_info(filled_values)
-        render_summary_html(section_data, fpath, patient_info)
+        render_summary_html(section_data, fpath, patient_info, TARGET_SECTIONS)
         elapsed = time.time() - start_time
         print(f"✅ Processed: {fpath} in {elapsed:.2f} seconds")
     except Exception as e:

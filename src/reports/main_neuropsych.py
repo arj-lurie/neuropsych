@@ -15,7 +15,7 @@ from patient_details import get_patient_info
 import pdb
 
 # Read the source PDF file
-fpath = '../../data/np_hx/patients/P1/Sample NP Hx Form - Reno.pdf'
+fpath = '../../data/np_hx/patients/P1/np_hx_form.pdf'
 filled_values = extract_pdf_form_data(fpath)
 # pdb.set_trace()
 patient_info = get_patient_info(filled_values)
@@ -41,8 +41,8 @@ extracted_data = extract_sections(filled_values, target_sections, field_section_
 
 section_data = {}
 for section in extracted_data:
-    # result = get_local_response(get_ai_instruction(extracted_data[section]))
-    result = get_remote_response(get_ai_instruction(extracted_data[section], section))
+    result = get_local_response(get_ai_instruction(extracted_data[section]))
+    # result = get_remote_response(get_ai_instruction(extracted_data[section], section))
     section_data[section] = result
 
 # Render the HTML page

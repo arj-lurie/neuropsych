@@ -7,3 +7,4 @@ libraries/
 *.txt
 *.html
 .env
+env

@@ -4,8 +4,13 @@ import os
 import webbrowser
 
 def render_summary_html(section_data: dict, fpath: str, patient_info: dict, _target_sections: list, output_filename="ai_generated_report.html"):
-    # Get the directory from the input file path
-    output_dir = fpath
+    # Get the directory from the input file path    
+    # If it's already a file path (ends with .ext), use its directory
+    if os.path.splitext(fpath)[1]:  # has an extension
+        output_dir = os.path.dirname(fpath)
+    else:
+        output_dir = fpath
+
     # Combine directory and output filename
     output_file = os.path.join(output_dir, output_filename)
 
