@@ -66,9 +66,10 @@ def process_pdf(fpath):
 
         # Render the summary after processing all sections
         patient_info = get_patient_info(filled_values)
-        render_summary_html(section_data, fpath, patient_info, TARGET_SECTIONS)
+        html_content = render_summary_html(section_data, fpath, patient_info, TARGET_SECTIONS)
         elapsed = time.time() - start_time
         print(f"✅ Processed: {fpath} in {elapsed:.2f} seconds")
+        return Path(fpath).with_suffix(".html").name, html_content
     except Exception as e:
         elapsed = time.time() - start_time
         print(f"❌ Failed to process {fpath} after {elapsed:.2f} seconds: {e}")

@@ -214,10 +214,11 @@ def render_summary_html(section_data: dict, fpath: str, patient_info: dict, _tar
     # Render with Jinja2
     template = Template(html_content)
     rendered_html = template.render(patient_info=patient_info)
+    return rendered_html
 
-    # Write rendered HTML to file
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write(rendered_html)
+    # # Write rendered HTML to file
+    # with open(output_file, "w", encoding="utf-8") as f:
+    #     f.write(rendered_html)
 
-    webbrowser.open(f"file://{os.path.abspath(output_file)}")
+    # webbrowser.open(f"file://{os.path.abspath(output_file)}")
 

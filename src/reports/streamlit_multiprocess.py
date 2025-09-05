@@ -48,16 +48,10 @@ def main():
 
         # Multiprocessing
         with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-            for i, _ in enumerate(pool.imap_unordered(process_pdf, pdf_paths), 1):
+            for i, (name, html_content) in enumerate(pool.imap_unordered(process_pdf, pdf_paths), 1):
                 progress.progress(i / len(pdf_paths))
                 status_text.text(f"Processed {i}/{len(pdf_paths)} PDFs")
-
-                # Read generated HTML immediately into memory
-                html_path = Path(pdf_paths[i-1]).with_suffix(".html")
-                if html_path.exists():
-                    with open(html_path, "r", encoding="utf-8") as f:
-                        html_content = f.read()
-                    processed_html_contents.append((html_path.name, html_content))
+                processed_html_contents.append((name, html_content))
 
         total_elapsed = time.time() - total_start
         st.success(f"🏁 All PDFs processed in {total_elapsed:.2f} seconds.")
